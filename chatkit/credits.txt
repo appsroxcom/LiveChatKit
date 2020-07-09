@@ -1,0 +1,5 @@
+UI based on ChatKit by stfalcon.com
+https://github.com/stfalcon-studio/ChatKit
+
+Empty box icon made by Freepik from www.flaticon.com
+https://www.flaticon.com/free-icon/box_1380641?term=empty&page=1&position=4

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chat_notification_channel_id" translatable="false">chat_default_channel</string>
+    <string name="chat_notification_channel_name">Chat</string>
+    <string name="new_message_notification">You\'ve got a new message</string>
+    <string name="chat_notification_action" translatable="false">%1$s.CHATS</string>
+    <bool name="showAttachmentButton">true</bool>
+</resources>

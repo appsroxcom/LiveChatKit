@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Firebase user id of live agent user -->
+    <string name="agent_user_id" translatable="false">7UsafbTm0lQAFq7FyNMzWB7u0ns2</string>
+
+    <!-- Attachment file size limit in live chat -->
+    <string name="max_size_in_bytes" translatable="false">10485760</string>
+
+    <!-- Enable file upload in live chat -->
+    <bool name="showAttachmentButton">false</bool>
+</resources>

@@ -1,0 +1,70 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg = 'appsroxcom'
+    repoName = 'maven'
+    groupId = 'com.appsrox'
+    artifactId = 'chatkit'
+    publishVersion = '0.1.0'
+    desc = 'ChatKit for implementing In-App chat feature in Android apps'
+    website = 'https://github.com/appsroxcom/LiveChatKit'
+}
+
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "0.3.3"
+        consumerProguardFiles 'proguard.txt'
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+}
+
+ext {
+    picassoVersion = '2.5.2'
+    circleImageViewVersion = '2.2.0'
+    shapeImageViewVersion = '0.9.3'
+    circleindicatorVersion = '1.2.2@aar'
+    flexboxVersion = '1.0.0'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-process:2.0.0'
+    implementation "com.google.android:flexbox:$flexboxVersion"
+
+    //Picasso
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
+
+    //ImageViews
+    implementation "de.hdodenhof:circleimageview:$circleImageViewVersion"
+    implementation "com.github.siyamed:android-shape-imageview:$shapeImageViewVersion"
+
+    //Utils
+    implementation "me.relex:circleindicator:$circleindicatorVersion"
+    implementation 'com.appsrox:getavatar:1.0.0'
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:25.1.1')
+
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-storage'
+    implementation 'com.google.firebase:firebase-messaging'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
