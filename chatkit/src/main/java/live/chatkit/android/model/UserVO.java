@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 
 import com.google.firebase.firestore.IgnoreExtraProperties;
 import com.google.firebase.firestore.PropertyName;
+import com.google.firebase.firestore.ServerTimestamp;
 import com.stfalcon.chatkit.sample.common.data.model.User;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static live.chatkit.android.Constants.*;
@@ -20,6 +22,8 @@ public class UserVO extends BaseVO {
     @PropertyName(STATUS) public int status;//0=offline, 1=online, -1=invisible
     @PropertyName(BIO) public String bio;
     @PropertyName(PUBLIC_KEY) public String publicKey;
+    @ServerTimestamp
+    @PropertyName(UPDATED_AT) public Date updatedAt;
 
     public UserVO() {}
 

@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -30,6 +31,7 @@ import static live.chatkit.android.Constants.OFFLINE;
 import static live.chatkit.android.Constants.ONLINE;
 import static live.chatkit.android.Constants.PHOTO;
 import static live.chatkit.android.Constants.STATUS;
+import static live.chatkit.android.Constants.UPDATED_AT;
 import static live.chatkit.android.Constants.USERS;
 
 /*
@@ -203,7 +205,7 @@ public class UserRepository extends BaseRepository {
      */
     public void updateStatus(String userId, int status, final ResultListener listener) {
         db.collection(USERS).document(userId)
-                .update(STATUS, status)
+                .update(STATUS, status, UPDATED_AT, FieldValue.serverTimestamp())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
