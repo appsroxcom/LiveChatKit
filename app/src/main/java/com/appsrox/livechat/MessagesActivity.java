@@ -42,7 +42,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import static com.appsrox.livechat.CommonUtil.CHATS_LIMIT;
 import static com.appsrox.livechat.CommonUtil.MESSAGES_LIMIT;
+import static com.appsrox.livechat.CommonUtil.REFRESH_INTERVAL;
 import static live.chatkit.android.Constants.ADDED;
 import static live.chatkit.android.Constants.CHAT_ID;
 import static live.chatkit.android.Constants.MODIFIED;
@@ -57,6 +59,14 @@ public class MessagesActivity extends CustomMediaMessagesActivity {
     private String mParticipantId;
     private Date mLastLoadedDate, mListenerStartDate;
     private String mChatKey;
+    private static long sLastRefresh;
+
+    private boolean isRefresh() {
+        return System.currentTimeMillis() - sLastRefresh > REFRESH_INTERVAL;
+    }
+    private void setRefresh() {
+        sLastRefresh = System.currentTimeMillis();
+    }
 
     public static void startChat(String chatId, Context context) {
         context.startActivity(new Intent(context, MessagesActivity.class).putExtra(CHAT_ID, chatId));
@@ -207,7 +217,7 @@ public class MessagesActivity extends CustomMediaMessagesActivity {
 
         } else if (!TextUtils.isEmpty(mParticipantId)) {
             final String currentUserId = getCurrentUser().getId();
-            ChatRepository.getInstance().fetchChats(false, currentUserId, new ResultListener() {
+            ChatRepository.getInstance().fetchChats(false, currentUserId, CHATS_LIMIT, new ResultListener() {
                 @Override
                 public void onSuccess(Object result) {
                     for (ChatVO chat : (List<ChatVO>) result) {
@@ -328,7 +338,7 @@ public class MessagesActivity extends CustomMediaMessagesActivity {
 
     private void fetchChats(final String participantId) {
         final String currentUserId = getCurrentUser().getId();
-        ChatRepository.getInstance().fetchChats(true, currentUserId, new ResultListener() {
+        ChatRepository.getInstance().fetchChats(true, currentUserId, CHATS_LIMIT, new ResultListener() {
             @Override
             public void onSuccess(Object result) {
                 for (ChatVO chat : (List<ChatVO>) result) {
@@ -339,7 +349,7 @@ public class MessagesActivity extends CustomMediaMessagesActivity {
                     }
                 }
 
-                ChatRepository.getInstance().fetchChats(false, currentUserId, new ResultListener() {
+                ChatRepository.getInstance().fetchChats(false, currentUserId, CHATS_LIMIT, new ResultListener() {
                     @Override
                     public void onSuccess(Object result) {
                         for (ChatVO chat : (List<ChatVO>) result) {
@@ -392,6 +402,13 @@ public class MessagesActivity extends CustomMediaMessagesActivity {
             ChatUtil.populateChatDetails(chat, userMap, currentUserId);
             onInitChat(ChatVO.toDialog(getApplicationContext(), chat, userMap, null, mChatKey));
         }
+
+        if (isRefresh()) UserRepository.getInstance().fetchUser(false, mParticipantId, new ResultListener() {
+            @Override
+            public void onSuccess(Object result) {
+                setRefresh();
+            }
+        });
     }
 
     private void onInitChat(Dialog currentChat) {

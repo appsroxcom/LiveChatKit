@@ -122,10 +122,11 @@ public class ChatRepository extends BaseRepository {
      *
      * @param isCached
      * @param userId
+     * @param limit
      * @param listener
      */
-    public void fetchChats(boolean isCached, String userId, final ResultListener listener) {
-        db.collection(CHATS).whereArrayContains(PARTICIPANTS, userId).orderBy(UPDATED_AT, Query.Direction.DESCENDING)
+    public void fetchChats(boolean isCached, String userId, int limit, final ResultListener listener) {
+        db.collection(CHATS).whereArrayContains(PARTICIPANTS, userId).orderBy(UPDATED_AT, Query.Direction.DESCENDING).limit(limit)
                 .get(isCached ? Source.CACHE : Source.DEFAULT)
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

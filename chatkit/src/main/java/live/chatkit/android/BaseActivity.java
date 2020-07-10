@@ -29,6 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected ImageLoader imageLoader;
     private Picasso picasso;
     private User mCurrentUser;
+    private String publicKey, privateKey;
 
     protected abstract void onInit(User currentUser);
 
@@ -55,6 +56,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void login(String... args) {
         String userId = AuthRepository.getInstance().getCurrentUserId();
         if (userId != null) {
+            if (ChatUtil.getPrivateKey(getApplicationContext()) == null) {
+                exit();
+                return;
+            }
+
             fetchUser(userId, new CallbackListener() {
                 @Override
                 public void onResult(Object result) {
@@ -83,28 +89,41 @@ public abstract class BaseActivity extends AppCompatActivity {
         AuthRepository.getInstance().logout();
     }
 
+    private void exit() {
+        Toast.makeText(this, R.string.err_retry, Toast.LENGTH_LONG).show();
+        logout();
+        finish();
+    }
+
     private void init(final String userId) {
         mCurrentUser = new User(userId, getString(R.string.guest), null, false);
 
         //init keys
-        String publicKey = null;
         try {
-            if (ChatUtil.getPrivateKey(getApplicationContext()) == null) {
-                Map keyPair = CryptoUtil.generateKeyPair();
-                publicKey = (String) keyPair.get("publicKey");
-                String privateKey = (String) keyPair.get("privateKey");
-
-                ChatUtil.setPrivateKey(getApplicationContext(), privateKey);
-            }
+            Map keyPair = CryptoUtil.generateKeyPair();
+            publicKey = (String) keyPair.get("publicKey");
+            privateKey = (String) keyPair.get("privateKey");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        if (TextUtils.isEmpty(publicKey) || TextUtils.isEmpty(privateKey)) {
+            exit();
+            return;
         }
 
         UserVO user = new UserVO(mCurrentUser);
         user.publicKey = publicKey;
         UserRepository.getInstance().addUser(user, new ResultListener() {
             @Override
+            public void onFailure(@NonNull Exception e) {
+                exit();
+            }
+
+            @Override
             public void onSuccess(Object result) {
+                ChatUtil.setPrivateKey(getApplicationContext(), privateKey);
+
                 FirebaseInstanceId.getInstance().getInstanceId()
                         .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                             @Override

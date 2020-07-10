@@ -34,5 +34,10 @@
 
     <string name="no_results">No results</string>
     <string name="guest">Guest</string>
+
+    <string name="err_network">No network connectivity</string>
+    <string name="err_retry">Please try again later</string>
+    <string name="err_unknown">Unknown error occurred</string>
     <string name="err_auth">Authentication failed</string>
+
 </resources>
