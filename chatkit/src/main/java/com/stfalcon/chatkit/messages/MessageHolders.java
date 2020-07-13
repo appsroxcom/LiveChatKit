@@ -1066,9 +1066,11 @@ public class MessageHolders {
                         && message.getUser().getAvatar() != null
                         && !message.getUser().getAvatar().isEmpty();
 
-                userAvatar.setVisibility(isAvatarExists ? View.VISIBLE : View.GONE);
+                userAvatar.setVisibility(true || isAvatarExists ? View.VISIBLE : View.GONE);
                 if (isAvatarExists) {
                     imageLoader.loadImage(userAvatar, message.getUser().getAvatar(), null);
+                } else {
+                    userAvatar.setImageResource(R.drawable.placeholder);
                 }
             }
         }

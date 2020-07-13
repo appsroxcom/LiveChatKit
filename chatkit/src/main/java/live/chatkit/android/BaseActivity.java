@@ -96,7 +96,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     private void init(final String userId) {
-        mCurrentUser = new User(userId, getString(R.string.guest), null, false);
+        mCurrentUser = new User(userId, AuthRepository.getInstance().isAnonymous() ? getString(R.string.guest) : null, null, false);
 
         //init keys
         try {
