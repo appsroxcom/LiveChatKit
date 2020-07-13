@@ -5,7 +5,7 @@ End User | Admin
 ------------ | -------------
 <img src="screenshots/screenshot2.png" width=200/> | <img src="screenshots/screenshot3.png" width=200/>
 
-> Admin view comes from [OwnChat](https://github.com/appsroxcom/OwnChat) which is a chat app built using this library. We recommend you check out that project first.
+> Admin screenshot is from [OwnChat](https://github.com/appsroxcom/OwnChat) which is a chat app built using this library. We recommend you check out that project first.
 
 ## How it works
 The [demo app](https://github.com/appsroxcom/LiveChatKit/tree/master/app) showcases live chat feature. Adding live chat in your app requires setting up Firebase and integrating chatkit with your project.
@@ -20,7 +20,7 @@ Step 1: If your app is not already configured with Firebase then follow the inst
 Step 2: Now add the library dependency in your app build.gradle:
 ```
 	dependencies {
-		implementation 'com.github.appsroxcom:LiveChatKit:4818feb158'
+		implementation 'com.github.appsroxcom:LiveChatKit:master-SNAPSHOT'
 	}
 ```
 
@@ -34,7 +34,7 @@ Add it in your root build.gradle:
 	}
 ```
 
-Step 3: Follow the steps given [here](https://github.com/appsroxcom/OwnChat/blob/master/README.md#setup) for setting up the database and notifications (optional).
+Step 3: Follow the steps given [here](https://github.com/appsroxcom/OwnChat/blob/master/README.md#setup) for setting up the database. Skip configuration section there as it is not applicable for live chat.
 
 ## Usage
 Copy code present in [demo app](https://github.com/appsroxcom/LiveChatKit/tree/master/app) to your project. You can customize functionality and theme accordingly.
@@ -48,7 +48,7 @@ MessagesActivity.startChatWith(getString(R.string.agent_user_id), this);
 
 Here ```agent_user_id``` is the Firebase user id of the Live agent (Admin). You may fetch the user id using Firebase Remote Config instead of hard-coding in the app.
 
-> Important: You must be able to login with this user id in the OwnChat app. For this enable Email/Password sign-in provider in Firebase console. Then maually create a user in the console with an email and password. Get the user UID from there.
+> Important: You must be able to login with this user id in the OwnChat app. For this enable Email/Password sign-in provider in Firebase console. Then manually create a user in the console with an email and password. Get the user UID from there.
 
 Next, in OwnChat app go to Settings > Admin Login.
 
