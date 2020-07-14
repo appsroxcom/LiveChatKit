@@ -14,6 +14,6 @@ public class DemoActivity extends AppCompatActivity {
     }
 
     public void startLiveChat(View view) {
-        MessagesActivity.startChatWith(getString(R.string.agent_user_id), this);
+        MessagesActivity.startChatWith(getString(R.string.agent_user_id), this);//TODO: Update agent_user_id
     }
 }

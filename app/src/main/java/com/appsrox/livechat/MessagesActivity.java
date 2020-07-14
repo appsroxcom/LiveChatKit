@@ -42,9 +42,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import static com.appsrox.livechat.CommonUtil.CHATS_LIMIT;
-import static com.appsrox.livechat.CommonUtil.MESSAGES_LIMIT;
-import static com.appsrox.livechat.CommonUtil.REFRESH_INTERVAL;
+import static com.appsrox.livechat.ChatKitUtil.CHATS_LIMIT;
+import static com.appsrox.livechat.ChatKitUtil.MESSAGES_LIMIT;
+import static com.appsrox.livechat.ChatKitUtil.REFRESH_INTERVAL;
 import static live.chatkit.android.Constants.ADDED;
 import static live.chatkit.android.Constants.CHAT_ID;
 import static live.chatkit.android.Constants.MODIFIED;
@@ -331,8 +331,8 @@ public class MessagesActivity extends CustomMediaMessagesActivity {
             fetchChats(mParticipantId);
         }
 
-        if (!TextUtils.equals(currentUser.getName(), CommonUtil.getName(getApplicationContext()))) {
-            CommonUtil.saveProfile(getApplicationContext(), currentUser.getId());
+        if (!TextUtils.equals(currentUser.getName(), ChatKitUtil.getName(getApplicationContext()))) {
+            ChatKitUtil.saveProfile(getApplicationContext(), currentUser.getId());
         }
     }
 
@@ -490,7 +490,7 @@ public class MessagesActivity extends CustomMediaMessagesActivity {
         if (count > 0) {
             for (Message message : messagesAdapter.getSelectedMessages()) {
                 if (!getCurrentUser().getId().equals(message.getUser().getId())) {
-                    menu.findItem(com.appsrox.livechat.R.id.action_delete).setVisible(false);
+                    menu.findItem(R.id.action_delete).setVisible(false);
                     break;
                 }
             }

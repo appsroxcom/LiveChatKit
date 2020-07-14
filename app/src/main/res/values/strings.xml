@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Live ChatKit</string>
+    <string name="app_name">LiveChat Demo</string>
     <string name="upload_confirm">Upload file %1$s of size %2$s?</string>
     <string name="err_size">File size exceeds %1$s</string>
     <string name="guest">Live Chat</string>

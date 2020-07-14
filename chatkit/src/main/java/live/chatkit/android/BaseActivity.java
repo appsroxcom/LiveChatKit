@@ -48,7 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         imageLoader = new ImageLoader() {
             @Override
             public void loadImage(ImageView imageView, String url, Object payload) {
-                if (!TextUtils.isEmpty(url)) picasso.load(url)/*.placeholder(R.drawable.placeholder)*/.into(imageView);
+                if (!TextUtils.isEmpty(url)) picasso.load(url)/*.placeholder(R.drawable.avatar)*/.into(imageView);
             }
         };
     }

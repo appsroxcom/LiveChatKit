@@ -14,9 +14,9 @@ import java.util.Locale;
 import live.chatkit.android.UserRepository;
 import live.chatkit.android.model.UserVO;
 
-public class CommonUtil {
+public class ChatKitUtil {
 
-    private static final String TAG = "CommonUtil";
+    private static final String TAG = "ChatKitUtil";
 
     public static final long REFRESH_INTERVAL = 1000*30;//30s
     public static final int CHATS_LIMIT = 50;

@@ -1070,7 +1070,7 @@ public class MessageHolders {
                 if (isAvatarExists) {
                     imageLoader.loadImage(userAvatar, message.getUser().getAvatar(), null);
                 } else {
-                    userAvatar.setImageResource(R.drawable.placeholder);
+                    userAvatar.setImageResource(R.drawable.avatar);
                 }
             }
         }

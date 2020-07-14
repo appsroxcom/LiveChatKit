@@ -659,13 +659,13 @@ public class DialogsListAdapter<DIALOG extends IDialog>
 
             //Set Dialog avatar
             if (imageLoader != null) {
-                if (TextUtils.isEmpty(dialog.getDialogPhoto())) ivAvatar.setImageResource(R.drawable.placeholder);
+                if (TextUtils.isEmpty(dialog.getDialogPhoto())) ivAvatar.setImageResource(R.drawable.avatar);
                 else imageLoader.loadImage(ivAvatar, dialog.getDialogPhoto(), null);
             }
 
             //Set Last message user avatar with check if there is last message
             if (imageLoader != null && dialog.getLastMessage() != null && dialog.getLastMessage().getUser() != null) {
-                if (TextUtils.isEmpty(dialog.getLastMessage().getUser().getAvatar())) ivLastMessageUser.setImageResource(R.drawable.placeholder);
+                if (TextUtils.isEmpty(dialog.getLastMessage().getUser().getAvatar())) ivLastMessageUser.setImageResource(R.drawable.avatar);
                 else imageLoader.loadImage(ivLastMessageUser, dialog.getLastMessage().getUser().getAvatar(), null);
             }
             ivLastMessageUser.setVisibility(dialogStyle.isDialogMessageAvatarEnabled()
