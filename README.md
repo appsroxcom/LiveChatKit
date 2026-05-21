@@ -20,7 +20,7 @@ Step 1: If your app is not already configured with Firebase then follow the inst
 Step 2: Now add the library dependency in your app build.gradle:
 ```
 	dependencies {
-		implementation 'com.github.appsroxcom:LiveChatKit:master-SNAPSHOT'
+		implementation 'com.github.appsroxcom:LiveChatKit:v0.2.1'
 	}
 ```
 
