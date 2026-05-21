@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
+/*apply plugin: 'com.novoda.bintray-release'
 
 publish {
     userOrg = 'appsroxcom'
@@ -9,7 +9,7 @@ publish {
     publishVersion = '0.2.1'
     desc = 'ChatKit for implementing In-App chat feature in Android apps'
     website = 'https://github.com/appsroxcom/LiveChatKit'
-}
+}*/
 
 android {
     compileSdkVersion 29
