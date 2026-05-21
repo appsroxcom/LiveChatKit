@@ -54,7 +54,7 @@ dependencies {
 
     //Utils
     implementation "me.relex:circleindicator:$circleindicatorVersion"
-    implementation 'com.github.appsroxcom:GetAvataaars:master-SNAPSHOT' //implementation 'com.appsrox:getavatar:1.0.0'
+    implementation 'com.github.appsroxcom:GetAvataaars:v1.1.0' //implementation 'com.appsrox:getavatar:1.0.0'
 
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:25.1.1')
